@@ -1,0 +1,499 @@
+body {
+	background-color: #5ce1e6;
+}
+
+.bubblingArea {
+	display: flexbox;
+	padding: 30px;
+	justify-content: center;
+	text-align: center;
+	margin-bottom: 60px;
+	background-color: white;
+	border-radius: 40px;
+	width: 300px;
+	margin: 20px;
+	padding: 1.25rem;
+	z-index: 1;
+	width: 300px;
+}
+
+input:focus,
+textarea:focus {
+	outline: 3px solid #7ed957;
+}
+
+h3 {
+	color: #c4f7df;
+	margin-top: 30px;
+	text-align: center;
+	padding-bottom: 10px;
+	font-size: 1.5rem;
+}
+
+/* #leafTitle {
+	font-weight: bold;
+} */
+
+#croakButton {
+	width: 200px;
+	font-size: 1.7rem;
+	text-align: center;
+	background-color: #5ce1e6;
+	color: white;
+	border-radius: 30px;
+	border: 0;
+	outline: none; /* removes focus outline if any */
+	box-shadow: none; /* Bootstrap often uses this */
+	padding: 10px;
+	display: block;
+	margin: 1rem auto 0;
+}
+
+/* Hover */
+#croakButton:hover {
+	background-color: #71bd50;
+}
+
+.container {
+	align-content: space-evenly;
+}
+
+#croakArea {
+	display: flex;
+	/* padding: 30px; */
+	justify-content: center;
+	margin-bottom: 60px;
+}
+
+#croakForm {
+	padding: 30px;
+	margin: 10px 30px 30px 30px;
+	border-radius: 40px;
+	background: #c4f7df;
+	justify-content: center;
+	/* background: #dbe2eb; */
+	/* background: #a39774; */
+	/* padding: 30px; */
+	width: 100%;
+	max-width: 800px; /* optional, but sane */
+}
+
+#croakForm label {
+	display: block;
+	/* margin-bottom: 1rem; */
+	padding: 10px;
+	/* margin: 20px; */
+	/* border-radius: 30px; */
+}
+
+#croakForm input,
+#croakForm textarea {
+	width: 100%;
+	color: #666;
+	box-sizing: border-box;
+	min-height: 2;
+	padding: 10px;
+	border-radius: 30px;
+	border: 0;
+	outline: none; /* removes focus outline if any */
+	box-shadow: none; /* Bootstrap often uses this */
+	border-radius: 12px;
+}
+
+.iconRow {
+	display: flex;
+	justify-content: center; /* centers icons horizontally */
+	gap: 12px; /* space between the icons */
+	margin-top: 8px; /* space below the author */
+}
+
+.iconRow form {
+	display: inline-flex; /* keeps button size tight */
+	padding: 0;
+	margin: 0;
+}
+
+.icon-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	/* color: #5ce1e6; */
+	color: #7ed957;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		color 0.2s,
+		transform 0.2s;
+}
+
+/* .icon-btn {
+	background: none;
+	border: none;
+	padding: 0 3px;
+	cursor: pointer;
+	color: #7ed957;
+} */
+
+.icon-btn:hover {
+	color: #4d8336;
+	transform: translateY(-2px);
+}
+
+.icon-btn svg {
+	width: 26px;
+	height: 26px;
+	display: block;
+	fill: currentColor; /* important: makes color follow CSS */
+}
+
+input.field,
+textarea.field {
+	width: 100%;
+	box-sizing: border-box; /* 🔑 prevents overflow */
+}
+
+.comment input,
+.comment textarea {
+	width: 260px;
+}
+
+#commentInput,
+#authorInput,
+#titleInput {
+	width: 100%;
+}
+
+#commentForm {
+	display: flex;
+}
+
+#comments {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 12px;
+	justify-content: center;
+}
+
+.comment {
+	position: relative;
+	width: 300px;
+	margin: 20px;
+	padding: 1.25rem;
+	z-index: 1;
+	width: 300px;
+	flex: 0 0 auto; /* 🔑 important */
+}
+
+.leaf {
+	margin: 50px;
+}
+
+button {
+	display: inline-block;
+}
+
+.before {
+	font-weight: bold;
+	color: white;
+}
+
+#clean {
+	margin-top: 50px;
+}
+
+/* background layer */
+.comment::before {
+	content: "";
+	position: absolute;
+	top: -90px; /* move top up/down */
+	left: -50px;
+	right: -50px;
+	bottom: -50px; /* keep bottom same for height expansion */
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	z-index: -1;
+	opacity: 0.9;
+}
+
+/* .comment::before {
+	content: "";
+	position: absolute;
+	inset: -90px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	aspect-ratio: 4 / 3;
+	z-index: -1;
+	opacity: 0.9;
+} */
+
+.comment.bg-1::before {
+	background-image: url("../images/bigleaf.png");
+}
+
+.comment.bg-2::before {
+	background-image: url("../images/bigleaf2.png");
+}
+
+.comment.bg-3::before {
+	background-image: url("../images/bigleaf3.png");
+}
+
+.comment.bg-4::before {
+	background-image: url("../images/bigleaf4.png");
+}
+
+.comment.bg-5::before {
+	background-image: url("../images/bigleaf5.png");
+}
+
+.comment.bg-6::before {
+	background-image: url("../images/bigleaf6.png");
+}
+
+.comment.bg-7::before {
+	background-image: url("../images/bigleaf7.png");
+}
+
+.comment.bg-8::before {
+	background-image: url("../images/bigleaf8.png");
+}
+
+/* Full header background */
+.site-header {
+	background-color: #7ed957;
+}
+
+/* Text contrast */
+.site-header h1 {
+	color: #c4f7df;
+	margin-top: 30px;
+	font-size: 4rem;
+}
+
+.site-header p {
+	color: #666;
+}
+
+/* Nav pills */
+.nav-pills .nav-link {
+	color: #666;
+}
+
+.nav-pills .nav-link.active {
+	background-color: #7ed957;
+}
+
+/* Optional spacing polish */
+p.undertitle {
+	margin-bottom: 0;
+	color: #666;
+	font-size: 19px;
+	text-transform: uppercase;
+}
+
+/* FONTS */
+
+.google-sans-message {
+	font-family: "Google Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	font-variation-settings: "GRAD" 0;
+}
+
+.coming-soon-regular {
+	font-family: "Coming Soon", cursive;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.klee-one-regular {
+	font-family: "Klee One", cursive;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.barriecito-regular {
+	font-family: "Barriecito", system-ui;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.potta-one-regular {
+	font-family: "Potta One", system-ui;
+	font-weight: 400;
+	font-size: medium;
+	font-style: normal;
+	text-transform: capitalize;
+}
+
+/* Divider */
+.header-divider {
+	border-top: 1px solid #7ed957;
+}
+
+/* Navbar spacing */
+.site-nav {
+	padding: 0.75rem 0;
+	background: none;
+}
+
+/* Tabs container */
+.pond-tabs {
+	gap: 0.5rem;
+}
+
+/* Base tab */
+.pond-tabs .nav-link {
+	background-color: #71bd50;
+	font-size: 1.3rem;
+	color: white;
+	padding: 0.6rem 1.2rem;
+	border-radius: 0 0 8px 8px; /* point DOWN */
+	transition:
+		background-color 0.2s ease,
+		transform 0.15s ease;
+}
+
+/* Hover */
+.pond-tabs .nav-link:hover {
+	background-color: #4d8336;
+	transform: translateY(2px);
+}
+
+/* Active tab */
+.pond-tabs .nav-link.active {
+	background-color: #7ed957;
+	color: white;
+}
+
+/* Kill Bootstrap pill defaults */
+.nav-pills .nav-link {
+	border-radius: 0;
+}
+
+/* Footer stuff */
+.site-footer {
+	border-top: 1px solid #ddd;
+	background-color: #c4f7df;
+	margin-top: 100px;
+}
+
+.footer-logo {
+	width: 64px;
+	height: auto;
+	opacity: 0.85;
+}
+
+.author {
+	color: white;
+	text-align: center;
+	/* font-style: italic; */
+	font-size: smaller;
+	text-transform: uppercase;
+}
+
+.title {
+	color: #3d612e;
+	text-align: center;
+	/* font-style: italic; */
+	/* font-size: smaller; */
+	text-transform: uppercase;
+}
+
+.comment-text {
+	color: #273a1f;
+	text-align: center;
+	/* font-style: italic; */
+	/* font-size: smaller; */
+	text-transform: uppercase;
+}
+
+/* BUBBLING AREA */
+.bubblingArea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 550px;
+	max-width: 900px;
+	margin: 60px auto; /* 👈 margins now work */
+	padding: 40px 20px;
+	text-align: center;
+}
+
+.bubblingTop {
+	display: flex;
+	align-items: center;
+	gap: 12px; /* space between icon & button */
+	margin-top: 26px;
+}
+
+.bubblingIcon {
+	width: 54px;
+	/* height: auto; */
+}
+
+#bubblingCroak {
+	display: inline-block;
+	padding: 12px 24px;
+	border-radius: 30px;
+	background-color: #84bf62;
+	color: white;
+	font-size: 1.3rem;
+	text-decoration: none;
+}
+
+#bubblingCroak:hover {
+	background-color: #4d8336;
+}
+
+.bubblingText {
+	margin: 0;
+	font-size: 1.4rem;
+}
+
+.container.bubble {
+	display: block;
+	justify-content: center;
+	align-items: flex-start; /* 👈 STOP full-height stretching */
+}
+
+/* About page */
+.aboutCroak {
+	max-width: 1000px;
+	margin: 60px auto;
+	padding: 40px;
+	background: white;
+	color: #222222;
+	border-radius: 40px;
+}
+
+/* Header */
+.aboutCroak h1 {
+	text-align: left;
+	margin-bottom: 40px;
+	border-radius: 40px;
+}
+
+/* Columns wrapper */
+.about-columns {
+	display: flex;
+	gap: 40px; /* space between columns */
+}
+
+/* Each column */
+.about-columns .column {
+	flex: 1; /* equal width */
+	line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+	.about-columns {
+		flex-direction: column;
+	}
+}
