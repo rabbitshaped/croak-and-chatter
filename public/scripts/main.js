@@ -1,19 +1,19 @@
-console.log("frog site loaded");
-
-//CROAKING ON SUBMIT
 document.addEventListener("DOMContentLoaded", () => {
 	const croakButton = document.getElementById("croakButton");
+	if (!croakButton) return;
+
 	croakButton.addEventListener("click", (event) => {
+		const form = event.currentTarget.form;
+		if (!form.reportValidity()) return;
+
 		event.preventDefault();
-		// Play frog sound
-		let froggySound = new Audio("sounds/freesound_community-frog-85649.mp3");
-		// MUST be synchronous
+		const froggySound = new Audio("/sounds/freesound_community-frog-85649.mp3");
 		froggySound.play().catch((err) => {
 			console.error("Audio play blocked:", err);
 		});
-		// Delay only the form submission
+
 		setTimeout(() => {
-			event.target.form.submit();
+			form.submit();
 		}, 500);
 	});
 });
