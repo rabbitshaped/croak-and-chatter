@@ -71,14 +71,23 @@ a {
 }
 
 /* Header and navigation */
+.header-layer {
+	width: 100%;
+	max-width: var(--scene-max);
+	margin-inline: auto;
+	overflow: visible;
+	background: var(--header-green);
+}
+
 .site-header {
 	position: relative;
 	z-index: 5;
 	max-width: var(--scene-max);
 	margin: 0 auto;
 	padding: 28px 24px 30px;
+	overflow: visible;
 	text-align: center;
-	background: var(--header-green);
+	background: transparent;
 }
 
 .pond-area {
