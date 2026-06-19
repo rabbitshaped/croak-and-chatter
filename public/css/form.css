@@ -1,9 +1,12 @@
 /* Keep-clean form */
 .keep-clean {
 	position: relative;
+	width: 100%;
+	max-width: var(--scene-max);
 	margin-top: -30px;
+	margin-inline: auto;
 	padding: 124px 24px 76px;
-	background: var(--light-green);
+	background: var(--clean-green);
 }
 
 .keep-clean::before {
@@ -14,7 +17,7 @@
 	width: 100%;
 	height: 28px;
 	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-	background: var(--light-green);
+	background: var(--clean-green);
 }
 
 .keep-clean__inner {
@@ -175,7 +178,7 @@
 @media (max-width: 760px) {
 	.keep-clean {
 		margin-top: 0;
-		padding: 80px 20px 68px;
+		padding: 96px 20px 68px;
 	}
 
 	.keep-clean__inner {

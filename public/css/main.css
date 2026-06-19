@@ -1,13 +1,13 @@
 :root {
 	--scene-max: 1200px;
-	--light-green: #eef4d9;
-	--light-blue: #b6e6ed;
-	--pond-blue-deep: #63c3d4;
+	--page-bg: #344a26;
+	--header-green: #eef4d9;
+	--sky-blue: #b6e6ed;
+	--pond-blue: #63c3d4;
+	--clean-green: #eef4d9;
 	--footer-green: #7faa68;
-	--side-pattern-color: rgba(79, 134, 77, 0.12);
-	--side-pattern-size: 48px;
 	--cream: #f8f6e9;
-	--cream-soft: var(--light-green);
+	--cream-soft: var(--clean-green);
 	--leaf: #75a957;
 	--leaf-dark: #37522f;
 	--leaf-muted: #87a773;
@@ -29,7 +29,7 @@ html {
 body {
 	min-width: 320px;
 	margin: 0;
-	background: var(--cream-soft);
+	background: var(--page-bg);
 	color: var(--ink);
 	font-family: var(--body-font);
 	font-size: 16px;
@@ -37,7 +37,7 @@ body {
 
 .home-page {
 	position: relative;
-	background: var(--light-green);
+	background: var(--page-bg);
 }
 
 /* Decorative pond: above color bands, below all interactive content. */
@@ -52,35 +52,6 @@ body {
 	background: url("../images/bigpond.png") center top / 100% auto no-repeat;
 	pointer-events: none;
 	transform: translateX(-50%);
-}
-
-/* Subtle pattern appears only outside the centered scene frame. */
-.home-page::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: 0;
-	background-image: radial-gradient(
-		circle,
-		var(--side-pattern-color) 1.5px,
-		transparent 1.5px
-	);
-	background-size: var(--side-pattern-size) var(--side-pattern-size);
-	-webkit-mask-image: linear-gradient(
-		to right,
-		#000 0 max(0px, calc((100% - var(--scene-max)) / 2)),
-		transparent max(0px, calc((100% - var(--scene-max)) / 2))
-			calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))),
-		#000 calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))) 100%
-	);
-	mask-image: linear-gradient(
-		to right,
-		#000 0 max(0px, calc((100% - var(--scene-max)) / 2)),
-		transparent max(0px, calc((100% - var(--scene-max)) / 2))
-			calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))),
-		#000 calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))) 100%
-	);
-	pointer-events: none;
 }
 
 img {
@@ -105,18 +76,21 @@ a {
 	z-index: 5;
 	max-width: var(--scene-max);
 	margin: 0 auto;
-	padding: 28px 24px 0;
+	padding: 28px 24px 30px;
 	text-align: center;
-	margin-bottom: 30px;
+	background: var(--header-green);
 }
 
 .pond-area {
 	position: relative;
-	background: var(--pond-blue-deep);
+	width: 100%;
+	max-width: var(--scene-max);
+	margin-inline: auto;
+	background: var(--pond-blue);
 }
 
 .hero-band {
-	background: var(--light-blue);
+	background: var(--sky-blue);
 }
 
 .site-brand {
@@ -318,8 +292,16 @@ a {
 }
 
 @media (max-width: 700px) {
+	.home-page::before {
+		top: 210px;
+	}
+
 	.site-header {
-		padding: 34px 16px 22px;
+		padding: 48px 16px 54px;
+	}
+
+	.hero-band {
+		padding-top: 18px;
 	}
 
 	.site-title {
@@ -352,7 +334,7 @@ a {
 
 	.hero {
 		min-height: 250px;
-		margin-top: 18px;
+		margin-top: 0;
 		padding: 34px 16px 28px;
 	}
 
@@ -374,5 +356,9 @@ a {
 
 	.footer-grass {
 		width: 125px;
+	}
+
+	.site-footer {
+		z-index: 1;
 	}
 }
