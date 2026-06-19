@@ -5,7 +5,7 @@
 
 	<section class="comments-section" id="comments" aria-label="Pond chatter">
 		<div class="comments-grid">
-			<% comments.forEach((comment, index) => { %>
+			<% comments.slice(0, 6).forEach((comment, index) => { %>
 				<% if (comment === locals.commentToEdit) { %>
 					<%- include("partials/editCommentCard.ejs", { comment, index }) %>
 				<% } else { %>

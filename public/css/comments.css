@@ -6,6 +6,7 @@
 	margin: 0 auto;
 	padding: 0 28px 92px;
 	scroll-margin-top: 20px;
+	background-color: #64c3d3;
 }
 
 .comments-grid {
@@ -54,12 +55,24 @@
 	font-size: 0.74rem;
 }
 
-.pad-1 { background-image: url("../images/leaves/bigleaf.png"); }
-.pad-2 { background-image: url("../images/leaves/bigleaf2.png"); }
-.pad-3 { background-image: url("../images/leaves/bigleaf3.png"); }
-.pad-4 { background-image: url("../images/leaves/bigleaf4.png"); }
-.pad-5 { background-image: url("../images/leaves/bigleaf5.png"); }
-.pad-6 { background-image: url("../images/leaves/bigleaf6.png"); }
+.pad-1 {
+	background-image: url("../images/leaves/bigleaf.png");
+}
+.pad-2 {
+	background-image: url("../images/leaves/bigleaf2.png");
+}
+.pad-3 {
+	background-image: url("../images/leaves/bigleaf3.png");
+}
+.pad-4 {
+	background-image: url("../images/leaves/bigleaf4.png");
+}
+.pad-5 {
+	background-image: url("../images/leaves/bigleaf5.png");
+}
+.pad-6 {
+	background-image: url("../images/leaves/bigleaf6.png");
+}
 
 .comment-actions {
 	display: flex;
@@ -81,7 +94,9 @@
 	background: transparent;
 	color: var(--leaf-muted);
 	cursor: pointer;
-	transition: color 150ms ease, transform 150ms ease;
+	transition:
+		color 150ms ease,
+		transform 150ms ease;
 }
 
 .icon-button svg {
@@ -154,17 +169,17 @@
 
 @media (max-width: 540px) {
 	.comments-section {
-		padding-inline: 16px;
+		padding: 26px 16px 72px;
 	}
 
 	.comments-grid {
 		grid-template-columns: 1fr;
-		gap: 0;
-		max-width: 340px;
+		gap: 2px;
+		max-width: 320px;
 	}
 
 	.comment-card {
-		min-height: 306px;
-		padding-inline: 50px;
+		min-height: 300px;
+		padding: 54px 45px 42px;
 	}
 }
