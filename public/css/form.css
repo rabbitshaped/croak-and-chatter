@@ -2,27 +2,27 @@
 .keep-clean {
 	position: relative;
 	z-index: 3;
-	margin-top: -48px;
-	padding: 92px 24px 76px;
+	margin-top: -18px;
+	padding: 88px 24px 76px;
 	background: var(--cream-soft);
 }
 
 .keep-clean::before {
 	content: "";
 	position: absolute;
-	top: -23px;
-	left: 50%;
-	width: min(760px, 88vw);
-	height: 55px;
-	border-radius: 50% 50% 0 0;
+	top: -18px;
+	left: 0;
+	width: 100%;
+	height: 28px;
+	border-top: 7px solid rgba(197, 216, 162, 0.72);
+	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 	background: var(--cream-soft);
-	transform: translateX(-50%);
 }
 
 .keep-clean__inner {
 	position: relative;
 	display: grid;
-	grid-template-columns: 230px minmax(420px, 600px) 170px;
+	grid-template-columns: 300px minmax(420px, 570px) 150px;
 	align-items: center;
 	justify-content: center;
 	gap: clamp(24px, 4vw, 54px);
@@ -34,17 +34,20 @@
 	display: flex;
 	align-items: center;
 	gap: 18px;
+	align-self: stretch;
+	padding-right: 30px;
+	border-right: 1px dashed rgba(117, 169, 87, 0.65);
 }
 
 .clean-note img {
-	width: 92px;
+	width: 80px;
 	flex: 0 0 auto;
 }
 
 .clean-note h2 {
 	margin: 0 0 12px;
 	font-family: var(--display-font);
-	font-size: 1.2rem;
+	font-size: 1.02rem;
 	white-space: nowrap;
 }
 
@@ -137,21 +140,36 @@
 .cleaning-frog {
 	width: 150px;
 	justify-self: center;
+	transform: translateY(28px);
 }
 
 @media (max-width: 1000px) {
 	.keep-clean__inner {
-		grid-template-columns: minmax(180px, 230px) minmax(400px, 600px);
+		grid-template-columns: 190px minmax(360px, 1fr) 105px;
+		gap: 18px;
 	}
 
 	.cleaning-frog {
-		display: none;
+		width: 105px;
+	}
+
+	.clean-note {
+		padding-right: 22px;
+	}
+
+	.clean-note img {
+		width: 74px;
+	}
+
+	.clean-note h2 {
+		font-size: 1rem;
 	}
 }
 
 @media (max-width: 760px) {
 	.keep-clean {
-		padding: 72px 20px 60px;
+		margin-top: 0;
+		padding: 80px 20px 68px;
 	}
 
 	.keep-clean__inner {
@@ -161,6 +179,10 @@
 
 	.clean-note {
 		justify-content: center;
+		align-self: auto;
+		padding: 0 0 30px;
+		border-right: 0;
+		border-bottom: 1px dashed rgba(117, 169, 87, 0.65);
 	}
 
 	.cleaning-frog {
@@ -169,6 +191,7 @@
 		right: 0;
 		bottom: -54px;
 		width: 100px;
+		transform: none;
 	}
 }
 
@@ -181,7 +204,4 @@
 		padding-inline: 18px;
 	}
 
-	.cleaning-frog {
-		display: none;
-	}
 }

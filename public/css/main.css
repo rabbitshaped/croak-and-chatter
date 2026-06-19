@@ -63,6 +63,7 @@ a {
 	margin: 0 auto;
 	padding: 28px 24px 0;
 	text-align: center;
+	margin-bottom: 60px;
 }
 
 .site-brand {
@@ -79,6 +80,7 @@ a {
 	font-size: clamp(2.1rem, 5.1vw, 3.65rem);
 	line-height: 1;
 	letter-spacing: 0.02em;
+	color: #344a26;
 }
 
 .site-title::after {
@@ -88,7 +90,8 @@ a {
 	right: -42px;
 	width: 38px;
 	height: 38px;
-	background: url("../images/flower-yellow-small.png") center / contain no-repeat;
+	background: url("../images/flower-yellow-small.png") center / contain
+		no-repeat;
 }
 
 .site-tagline {
@@ -116,7 +119,10 @@ a {
 	font-weight: 600;
 	line-height: 1.2;
 	text-decoration: none;
-	transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+	transition:
+		background-color 160ms ease,
+		color 160ms ease,
+		transform 160ms ease;
 }
 
 .nav-tab:hover,
@@ -137,6 +143,7 @@ a {
 	min-height: 272px;
 	margin: 0 auto;
 	padding: 42px 20px 26px;
+	background-color: hotpink;
 }
 
 .bubbling-card {
@@ -175,7 +182,9 @@ a {
 	color: #fff;
 	font-family: var(--display-font);
 	text-decoration: none;
-	transition: background-color 160ms ease, transform 160ms ease;
+	transition:
+		background-color 160ms ease,
+		transform 160ms ease;
 }
 
 .bubbling-action a:hover,
@@ -212,8 +221,9 @@ a {
 /* Footer */
 .site-footer {
 	position: relative;
+	z-index: 4;
 	min-height: 118px;
-	overflow: hidden;
+	overflow: visible;
 	background: var(--footer);
 	color: #f7faee;
 }
@@ -257,7 +267,13 @@ a {
 
 @media (max-width: 700px) {
 	.site-header {
-		padding-top: 22px;
+		padding: 34px 16px 22px;
+		background: rgba(238, 244, 217, 0.9);
+	}
+
+	.site-title {
+		font-size: clamp(1.6rem, 7.2vw, 1.95rem);
+		white-space: nowrap;
 	}
 
 	.site-title::after {
@@ -268,26 +284,30 @@ a {
 
 	.site-tagline {
 		max-width: 310px;
+		margin-top: 12px;
+		line-height: 1.45;
 	}
 
 	.site-nav {
 		gap: 7px;
-		margin-top: 17px;
+		margin-top: 22px;
 	}
 
 	.nav-tab {
-		min-width: 0;
-		padding: 7px 12px;
+		min-width: 132px;
+		padding: 8px 12px;
 		font-size: 0.8rem;
 	}
 
 	.hero {
-		min-height: 235px;
-		padding-top: 32px;
+		min-height: 250px;
+		margin-top: 18px;
+		padding: 34px 16px 28px;
 	}
 
 	.bubbling-card {
-		padding: 27px 20px 23px;
+		width: min(380px, calc(100vw - 32px));
+		padding: 28px 18px 24px;
 		border-radius: 32px;
 	}
 
@@ -299,5 +319,9 @@ a {
 	.footer-content {
 		padding-inline: 82px;
 		font-size: 0.8rem;
+	}
+
+	.footer-grass {
+		width: 125px;
 	}
 }
