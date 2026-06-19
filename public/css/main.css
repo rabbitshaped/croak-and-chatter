@@ -1,14 +1,17 @@
 :root {
-	--pond-blue: #b6e6ed;
-	--header: #eef4d9;
+	--scene-max: 1200px;
+	--light-green: #eef4d9;
+	--light-blue: #b6e6ed;
+	--pond-blue-deep: #63c3d4;
+	--footer-green: #7faa68;
+	--side-pattern-color: rgba(79, 134, 77, 0.12);
+	--side-pattern-size: 48px;
 	--cream: #f8f6e9;
-	--cream-soft: #eef4d9;
+	--cream-soft: var(--light-green);
 	--leaf: #75a957;
 	--leaf-dark: #37522f;
 	--leaf-muted: #87a773;
 	--ink: #33462d;
-	--footer: #7faa68;
-	--page-width: 1200px;
 	--content-width: 980px;
 	--display-font: "Potta One", system-ui, sans-serif;
 	--body-font: "Klee One", sans-serif;
@@ -34,7 +37,7 @@ body {
 
 .home-page {
 	position: relative;
-	background: var(--header);
+	background: var(--light-green);
 }
 
 /* Decorative pond: above color bands, below all interactive content. */
@@ -44,11 +47,40 @@ body {
 	z-index: 1;
 	top: 60px;
 	left: 50%;
-	width: min(var(--page-width), 100%);
+	width: min(var(--scene-max), 100%);
 	aspect-ratio: 3000 / 3300;
 	background: url("../images/bigpond.png") center top / 100% auto no-repeat;
 	pointer-events: none;
 	transform: translateX(-50%);
+}
+
+/* Subtle pattern appears only outside the centered scene frame. */
+.home-page::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-image: radial-gradient(
+		circle,
+		var(--side-pattern-color) 1.5px,
+		transparent 1.5px
+	);
+	background-size: var(--side-pattern-size) var(--side-pattern-size);
+	-webkit-mask-image: linear-gradient(
+		to right,
+		#000 0 max(0px, calc((100% - var(--scene-max)) / 2)),
+		transparent max(0px, calc((100% - var(--scene-max)) / 2))
+			calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))),
+		#000 calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))) 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		#000 0 max(0px, calc((100% - var(--scene-max)) / 2)),
+		transparent max(0px, calc((100% - var(--scene-max)) / 2))
+			calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))),
+		#000 calc(100% - max(0px, calc((100% - var(--scene-max)) / 2))) 100%
+	);
+	pointer-events: none;
 }
 
 img {
@@ -71,7 +103,7 @@ a {
 .site-header {
 	position: relative;
 	z-index: 5;
-	max-width: var(--page-width);
+	max-width: var(--scene-max);
 	margin: 0 auto;
 	padding: 28px 24px 0;
 	text-align: center;
@@ -80,7 +112,11 @@ a {
 
 .pond-area {
 	position: relative;
-	background: var(--pond-blue);
+	background: var(--pond-blue-deep);
+}
+
+.hero-band {
+	background: var(--light-blue);
 }
 
 .site-brand {
@@ -157,7 +193,7 @@ a {
 	z-index: 2;
 	display: grid;
 	place-items: center;
-	max-width: var(--page-width);
+	max-width: var(--scene-max);
 	min-height: 272px;
 	margin: 0 auto;
 	padding: 42px 20px 26px;
@@ -240,9 +276,12 @@ a {
 .site-footer {
 	position: relative;
 	z-index: 4;
-	min-height: 118px;
+	width: 100%;
+	max-width: var(--scene-max);
+	margin-inline: auto;
+	min-height: 100px;
 	overflow: visible;
-	background: var(--footer);
+	background: var(--footer-green);
 	color: #f7faee;
 }
 
@@ -265,7 +304,7 @@ a {
 	position: absolute;
 	z-index: 1;
 	bottom: 0;
-	width: clamp(92px, 14vw, 165px);
+	width: clamp(92px, 14vw, 105px);
 	pointer-events: none;
 }
 
@@ -275,6 +314,7 @@ a {
 
 .footer-grass--right {
 	right: 0;
+	bottom: 20px;
 }
 
 @media (max-width: 700px) {
