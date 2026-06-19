@@ -1,19 +1,21 @@
 <%- include("partials/header.ejs") %>
 
 <main>
-	<%- include("partials/hero.ejs") %>
+	<div class="pond-area">
+		<%- include("partials/hero.ejs") %>
 
-	<section class="comments-section" id="comments" aria-label="Pond chatter">
-		<div class="comments-grid">
-			<% comments.slice(0, 6).forEach((comment, index) => { %>
-				<% if (comment === locals.commentToEdit) { %>
-					<%- include("partials/editCommentCard.ejs", { comment, index }) %>
-				<% } else { %>
-					<%- include("partials/commentCard.ejs", { comment, index }) %>
-				<% } %>
-			<% }) %>
-		</div>
-	</section>
+		<section class="comments-section" id="comments" aria-label="Pond chatter">
+			<div class="comments-grid">
+				<% comments.slice(0, 6).forEach((comment, index) => { %>
+					<% if (comment === locals.commentToEdit) { %>
+						<%- include("partials/editCommentCard.ejs", { comment, index }) %>
+					<% } else { %>
+						<%- include("partials/commentCard.ejs", { comment, index }) %>
+					<% } %>
+				<% }) %>
+			</div>
+		</section>
+	</div>
 
 	<%- include("partials/keepClean.ejs") %>
 </main>

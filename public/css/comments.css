@@ -6,7 +6,6 @@
 	margin: 0 auto;
 	padding: 0 28px 92px;
 	scroll-margin-top: 20px;
-	background-color: #64c3d3;
 }
 
 .comments-grid {
@@ -29,6 +28,7 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	text-align: center;
+	filter: drop-shadow(0 16px 20px rgba(42, 83, 62, 0.14));
 }
 
 .comment-card h2,
