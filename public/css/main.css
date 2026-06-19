@@ -1,5 +1,6 @@
 :root {
-	--pond-blue: #63c3d4;
+	--pond-blue: #b6e6ed;
+	--header: #eef4d9;
 	--cream: #f8f6e9;
 	--cream-soft: #eef4d9;
 	--leaf: #75a957;
@@ -32,11 +33,22 @@ body {
 }
 
 .home-page {
-	background-color: var(--cream-soft);
-	background-image: url("../images/bigpond.png");
-	background-position: center top;
-	background-repeat: no-repeat;
-	background-size: var(--page-width) auto;
+	position: relative;
+	background: var(--header);
+}
+
+/* Decorative pond: above color bands, below all interactive content. */
+.home-page::before {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: 60px;
+	left: 50%;
+	width: min(var(--page-width), 100%);
+	aspect-ratio: 3000 / 3300;
+	background: url("../images/bigpond.png") center top / 100% auto no-repeat;
+	pointer-events: none;
+	transform: translateX(-50%);
 }
 
 img {
@@ -63,7 +75,12 @@ a {
 	margin: 0 auto;
 	padding: 28px 24px 0;
 	text-align: center;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
+}
+
+.pond-area {
+	position: relative;
+	background: var(--pond-blue);
 }
 
 .site-brand {
@@ -114,11 +131,12 @@ a {
 	padding: 8px 20px;
 	border: 2px solid var(--leaf);
 	border-radius: 999px;
-	background: rgba(248, 246, 233, 0.78);
+	background: #eef4d9;
 	color: var(--leaf-dark);
 	font-weight: 600;
 	line-height: 1.2;
 	text-decoration: none;
+	box-shadow: 0 7px 18px rgba(42, 83, 62, 0.1);
 	transition:
 		background-color 160ms ease,
 		color 160ms ease,
@@ -143,14 +161,14 @@ a {
 	min-height: 272px;
 	margin: 0 auto;
 	padding: 42px 20px 26px;
-	background-color: hotpink;
 }
 
 .bubbling-card {
 	width: min(440px, 92vw);
 	padding: 34px 34px 28px;
-	border-radius: 42px;
+	border-radius: 54px;
 	background: rgba(251, 247, 239, 0.97);
+	box-shadow: 0 18px 40px rgba(42, 83, 62, 0.16);
 	text-align: center;
 }
 
@@ -259,16 +277,9 @@ a {
 	right: 0;
 }
 
-@media (max-width: 1200px) {
-	.home-page {
-		background-size: 100vw auto;
-	}
-}
-
 @media (max-width: 700px) {
 	.site-header {
 		padding: 34px 16px 22px;
-		background: rgba(238, 244, 217, 0.9);
 	}
 
 	.site-title {
@@ -308,7 +319,7 @@ a {
 	.bubbling-card {
 		width: min(380px, calc(100vw - 32px));
 		padding: 28px 18px 24px;
-		border-radius: 32px;
+		border-radius: 40px;
 	}
 
 	.about-columns {

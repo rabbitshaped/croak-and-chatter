@@ -4,16 +4,18 @@
 			<img src="/images/bucket.png" alt="A bucket and scrubbing brush" />
 			<div>
 				<h2 id="clean-title">Keep the pond clean!</h2>
-				<p>Please wipe your feet<br /><strong>before</strong> entering the pond.</p>
+				<p>Please wipe your feet<br /><span class="bold">before</span> entering the pond.</p>
 			</div>
 		</div>
 
 		<form id="croakForm" class="croak-form" action="/submit" method="POST">
 			<div class="form-row">
-				<label><span>Name</span><input type="text" id="authorInput" name="author" placeholder="Your name" /></label>
+				<label><span>Name</span><input type="text" id="authorInput" name="author"
+						placeholder="Your name" /></label>
 				<label><span>Title</span><input type="text" id="titleInput" name="title" placeholder="Title" /></label>
 			</div>
-			<label class="comment-field"><span>Your croak</span><textarea name="comment" id="commentInput" rows="4" placeholder="Write your croak here..." required></textarea></label>
+			<label class="comment-field"><span>Your croak</span><textarea name="comment" id="commentInput" rows="4"
+					placeholder="Write your croak here..." required></textarea></label>
 			<button class="croak-button" type="submit" id="croakButton">CROAK!</button>
 		</form>
 

@@ -1,9 +1,8 @@
 /* Keep-clean form */
 .keep-clean {
 	position: relative;
-	z-index: 3;
 	margin-top: -18px;
-	padding: 88px 24px 76px;
+	padding: 104px 24px 76px;
 	background: var(--cream-soft);
 }
 
@@ -14,15 +13,15 @@
 	left: 0;
 	width: 100%;
 	height: 28px;
-	border-top: 7px solid rgba(197, 216, 162, 0.72);
 	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 	background: var(--cream-soft);
 }
 
 .keep-clean__inner {
 	position: relative;
+	z-index: 2;
 	display: grid;
-	grid-template-columns: 300px minmax(420px, 570px) 150px;
+	grid-template-columns: 330px minmax(420px, 570px) 150px;
 	align-items: center;
 	justify-content: center;
 	gap: clamp(24px, 4vw, 54px);
@@ -63,6 +62,7 @@
 	padding: 24px 26px 20px;
 	border-radius: 34px;
 	background: rgba(248, 246, 233, 0.96);
+	box-shadow: 0 18px 40px rgba(42, 83, 62, 0.14);
 }
 
 .form-row {
@@ -118,7 +118,9 @@
 	font-family: var(--display-font);
 	font-size: 1.25rem;
 	cursor: pointer;
-	transition: background-color 160ms ease, transform 160ms ease;
+	transition:
+		background-color 160ms ease,
+		transform 160ms ease;
 }
 
 .croak-button::after {
@@ -141,6 +143,10 @@
 	width: 150px;
 	justify-self: center;
 	transform: translateY(28px);
+}
+
+.bold {
+	font-weight: 900;
 }
 
 @media (max-width: 1000px) {
@@ -204,4 +210,7 @@
 		padding-inline: 18px;
 	}
 
+	.cleaning-frog {
+		display: none;
+	}
 }
