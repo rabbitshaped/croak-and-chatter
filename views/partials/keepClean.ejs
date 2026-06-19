@@ -1,60 +1,22 @@
-<section class="keepclean">
+<section class="keep-clean" aria-labelledby="clean-title">
+	<div class="keep-clean__inner">
+		<div class="clean-note">
+			<img src="/images/bucket.png" alt="A bucket and scrubbing brush" />
+			<div>
+				<h2 id="clean-title">Keep the pond clean!</h2>
+				<p>Please wipe your feet<br /><strong>before</strong> entering the pond.</p>
+			</div>
+		</div>
 
-    <!-- LEFT SIDE -->
-    <div class="cleanLeft">
+		<form id="croakForm" class="croak-form" action="/submit" method="POST">
+			<div class="form-row">
+				<label><span>Name</span><input type="text" id="authorInput" name="author" placeholder="Your name" /></label>
+				<label><span>Title</span><input type="text" id="titleInput" name="title" placeholder="Title" /></label>
+			</div>
+			<label class="comment-field"><span>Your croak</span><textarea name="comment" id="commentInput" rows="4" placeholder="Write your croak here..." required></textarea></label>
+			<button class="croak-button" type="submit" id="croakButton">CROAK!</button>
+		</form>
 
-        <img src="images/bucket.png" alt="Cleaning bucket" class="bucketImage" />
-
-
-        <div class="cleanText">
-
-            <h3 class="cleanTitle">
-                Keep the pond clean!
-            </h3>
-
-            <p class="cleanDescription">
-                Please wipe your feet
-                <span class="before">before</span>
-                entering the pond.
-            </p>
-
-        </div>
-
-
-
-    </div>
-
-
-    <!-- CENTER FORM -->
-    <div id="croakArea">
-
-        <form id="croakForm" action="/submit" method="POST">
-
-            <!-- top row -->
-            <div class="topInputs">
-
-                <input type="text" id="authorInput" name="author" placeholder="Your name" />
-
-                <input type="text" id="titleInput" name="title" placeholder="Title" />
-
-            </div>
-
-            <textarea name="comment" id="commentInput" rows="4" placeholder="Write your croak here..."></textarea>
-
-            <button class="croakButton potta-one-regular" type="submit" id="croakButton">
-                CROAK!
-            </button>
-
-        </form>
-
-    </div>
-
-
-    <!-- RIGHT SIDE -->
-    <div class="cleanRight">
-
-        <img src="images/cleaning-frog.png" alt="Frog cleaning pond" class="cleanFrog" />
-
-    </div>
-
+		<img class="cleaning-frog" src="/images/cleaning-frog.png" alt="A frog sweeping the pond" />
+	</div>
 </section>

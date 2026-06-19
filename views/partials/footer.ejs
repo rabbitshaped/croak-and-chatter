@@ -1,29 +1,12 @@
-<footer class="footer site-footer mt-auto py-4">
-  <div class="container text-center">
-    <!-- 
-    <img src="/images/toad.png" alt="Edamame Frog" class="footer-logo m-3"> -->
-
-    <p>
-      Made with <span class="heart-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"
-          viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-          <path fill="rgb(235, 60, 68)"
-            d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z" />
-        </svg></span> in Helsinki.
-    </p>
-    <p>
-      © Ira Baraton
-      <% const today=new Date(); %>
-        <%= today.getFullYear(); %>
-    </p>
-
-  </div>
+<footer class="site-footer">
+	<img class="footer-grass footer-grass--left" src="/images/grass-left.png" alt="" />
+	<div class="footer-content">
+		<p>Made with <span aria-label="love">♥</span> in Helsinki.</p>
+		<p>© Ira Baraton <%= new Date().getFullYear() %></p>
+	</div>
+	<img class="footer-grass footer-grass--right" src="/images/grass-right.png" alt="" />
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="/scripts/main.js" defer></script>
 <script src="/scripts/main.js"></script>
-
 </body>
-
 </html>

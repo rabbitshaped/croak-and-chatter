@@ -28,7 +28,7 @@ app.post("/submit", (req, res) => {
 app.post("/edit", (req, res) => {
 	const index = req.body.editIndex;
 	const commentToEdit = comments[index];
-	res.render("index", { comments, commentToEdit, index });
+	res.render("index", { comments, commentToEdit, index, page: "home" });
 });
 
 // SAVE COMMENT
@@ -54,11 +54,11 @@ app.post("/delete", (req, res) => {
 app.get("/", (req, res) => {
 	const commentToEdit = null;
 	const index = null;
-	res.render("index", { comments, commentToEdit, index });
+	res.render("index", { comments, commentToEdit, index, page: "home" });
 });
 
 app.get("/about", (req, res) => {
-	res.render("about");
+	res.render("about", { page: "about" });
 });
 
 app.listen(port, () => {
