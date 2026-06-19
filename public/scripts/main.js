@@ -1,5 +1,7 @@
+console.log("frog site loaded");
+
+//CROAKING ON SUBMIT
 document.addEventListener("DOMContentLoaded", () => {
-	// Croaking on submit
 	const croakButton = document.getElementById("croakButton");
 	croakButton.addEventListener("click", (event) => {
 		event.preventDefault();

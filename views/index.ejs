@@ -1,115 +1,114 @@
 <%- include("partials/header.ejs") %>
 
-<div class="container bubble">
-	<div class="bubblingArea">
-		<h2 class="bubblingText potta-one-regular">"What’s bubbling in your throat today?"</h2>
-		<div class="bubblingTop">
-			<img src="/images/toad.png" alt="sitting toad" class="bubblingIcon" />
-			<a href="#croakForm" id="bubblingCroak" class="potta-one-regular">Release a Croak</a>
+	<%- include("partials/hero.ejs") %>
+
+		<div class="container">
+			<div id="comments" class="commentArea d-flex justify-content-center">
+				<% comments.forEach((c, index)=> {%>
+					<% if (c===locals.commentToEdit) { %>
+
+						<div id="comment-<%= index %>" class="comment bg-<%= (index % 8) + 1 %>">
+							<form action="/save" method="POST">
+
+								<input type="hidden" name="editIndex" value="<%= index %>">
+
+								<label>
+									<strong>Title:</strong><br />
+									<input class="field" type="text" name="title" value="<%= c.title %>">
+								</label>
+
+								<label>
+									<strong>Comment:</strong><br />
+									<textarea class="field" name="comment" rows="4"><%= c.comment %></textarea>
+								</label>
+
+								<label>
+									<strong>Author:</strong><br />
+									<input class="field" type="text" name="author" value="<%= c.author %>">
+								</label><br />
+								<div class="iconRow">
+									<!-- SAVE BUTTON -->
+									<button type="submit" class="save icon-btn"><svg xmlns="http://www.w3.org/2000/svg"
+											width="26" height="26" fill="currentColor" class=" bi bi-check-circle-fill"
+											viewBox="0 0 16 16">
+											<path
+												d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+										</svg></button>
+
+									<!-- CANCEL BUTTON -->
+									<button a href="/" type="submit" class="icon-btn cancel"><svg
+											xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+											fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+											<path
+												d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+											<path
+												d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+										</svg></button>
+								</div>
+							</form>
+						</div>
+						<% } else { %>
+							<div class="comment google-sans-message leaf bg-<%= (index % 8) + 1 %>"
+								data-index="<%= index %>">
+								<p class="title potta-one-regular" id="leafTitle">
+									<%= c.title %>
+								</p>
+								<p class="comment-text">
+									<%= c.comment %>
+								</p>
+								<p class="author potta-one-regular">
+									<%= c.author %>
+								</p>
+
+								<div class="iconRow">
+									<!-- EDIT BUTTON -->
+									<form action="/edit#comment-<%= index %>" method="POST" style="display: inline">
+										<input type="hidden" name="editIndex" value="<%= index %>" />
+										<button type="submit" class="edit icon-btn">
+											<svg xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+												<path
+													d="M535.6 85.7C513.7 63.8 478.3 63.8 456.4 85.7L432 110.1L529.9 208L554.3 183.6C576.2 161.7 576.2 126.3 554.3 104.4L535.6 85.7zM236.4 305.7C230.3 311.8 225.6 319.3 222.9 327.6L193.3 416.4C190.4 425 192.7 434.5 199.1 441C205.5 447.5 215 449.7 223.7 446.8L312.5 417.2C320.7 414.5 328.2 409.8 334.4 403.7L496 241.9L398.1 144L236.4 305.7zM160 128C107 128 64 171 64 224L64 480C64 533 107 576 160 576L416 576C469 576 512 533 512 480L512 384C512 366.3 497.7 352 480 352C462.3 352 448 366.3 448 384L448 480C448 497.7 433.7 512 416 512L160 512C142.3 512 128 497.7 128 480L128 224C128 206.3 142.3 192 160 192L256 192C273.7 192 288 177.7 288 160C288 142.3 273.7 128 256 128L160 128z" />
+											</svg>
+											<!-- <svg
+												xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+												class="fancyButton bi bi-pencil-square" viewBox="0 0 16 16">
+												<path fill="currentColor"
+													d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+												<path fill="currentColor" fill-rule="evenodd"
+													d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+											</svg> -->
+
+										</button>
+									</form>
+
+									<!-- DELETE BUTTON -->
+									<form action="/delete#comments" method="POST" style="display: inline">
+										<input type="hidden" name="commentIndex" value="<%= index %>" />
+										<button type="submit" class="delete icon-btn">
+											<!-- <svg
+												xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+												class="fancyButton bi bi-trash3-fill" viewBox="0 0 16 16">
+												<path fill="currentColor"
+													d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+											</svg> -->
+											<svg xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+												<path
+													d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z" />
+											</svg>
+										</button>
+								</div>
+								</form>
+							</div>
+							<% } }) %>
+			</div>
 		</div>
 
-		
-	</div>
-</div>
+		<%- include("partials/keepClean.ejs") %>
 
 
 
 
-<div class="container">
-	<div id="comments" class="commentArea d-flex justify-content-center">
-		<% comments.forEach((c, index) => {%>
-    <% if (c === locals.commentToEdit) { %>
-        
-      <div id="comment-<%= index %>" class="comment bg-<%= (index % 8) + 1 %>">
-        <form action="/save" method="POST">
-    
-          <input type="hidden" name="editIndex" value="<%= index %>">
-    
-          <label>
-            <strong>Title:</strong><br />
-            <input class="field" type="text" name="title" value="<%= c.title %>">
-          </label>
-    
-          <label>
-            <strong>Comment:</strong><br />
-            <textarea class="field" name="comment" rows="4"><%= c.comment %></textarea>
-          </label>
 
-          <label>
-            <strong>Author:</strong><br />
-            <input class="field" type="text" name="author" value="<%= c.author %>">
-          </label><br />
-		  <div class="iconRow">
-			<!-- SAVE BUTTON -->
-          <button type="submit" class="save icon-btn"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class=" bi bi-check-circle-fill" viewBox="0 0 16 16">
-			<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-		  </svg></button>
-
-			<!-- CANCEL BUTTON -->
-          <button a href="/" type="submit" class="icon-btn cancel"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-			<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-		  </svg></button></div>
-        </form>
-      </div>
-    <% } else {
-				%>
-				<div class="comment google-sans-message leaf bg-<%= (index % 8) + 1 %>" data-index="<%= index %>">
-					<p class="title potta-one-regular" id="leafTitle"> <%= c.title %></p>
-					<p class="comment-text"><%= c.comment %></p>
-          <p class="author potta-one-regular"><%= c.author %></p>
-
-		  <div class="iconRow">
-					<!-- EDIT BUTTON -->
-					<form action="/edit#comment-<%= index %>" method="POST" style="display: inline">
-						<input type="hidden" name="editIndex" value="<%= index %>" />
-						<button type="submit" class="edit icon-btn"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" class="fancyButton bi bi-pencil-square" viewBox="0 0 16 16">
-  <path fill="currentColor" d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill="currentColor" fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-</svg></button></form>
-
-					<!-- DELETE BUTTON -->
-					<form action="/delete#comments" method="POST" style="display: inline">
-						<input type="hidden" name="commentIndex" value="<%= index %>" />
-						<button type="submit" class="delete icon-btn"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" class="fancyButton bi bi-trash3-fill" viewBox="0 0 16 16">
-  <path fill="currentColor" d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-</svg></button></div>
-					</form>
-				</div>
-				<%
-			}
-
-		}) %>
-	</div>
-</div>
-
-<div class="container">
-  <h3 id="clean">Keep the pond clean!<br />
-Please wipe your feet <span class="before">before</span> entering the pond.</h3>
-	<div id="croakArea" class="justify-content-center">
-		<form id="croakForm" action="/submit" method="POST">
-			<label>
-				<input type="text" id="authorInput" name="author" placeholder="Your name"/> </label
-			>
-
-			<label>
-				<input type="text" id="titleInput" name="title"  placeholder="Title" /> </label
-			>
-
-			<label>
-				<textarea name="comment" id="commentInput" rows="4" placeholder="Write your croak here..."></textarea></label
-			>
-
-			<button class="croakButton potta-one-regular" type="submit" id="croakButton">CROAK!</button>
-		</form>
-	</div>
-</div>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-	crossorigin="anonymous"
-></script>
-<script src="/scripts/main.js" defer></script>
-
-<%- include("partials/footer.ejs") %>
+			<%- include("partials/footer.ejs") %>

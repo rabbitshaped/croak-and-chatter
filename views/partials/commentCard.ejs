@@ -1,0 +1,19 @@
+<!-- partials/commentCard.ejs -->
+
+<div class="comment google-sans-message leaf bg-<%= (index % 6) + 1 %>" data-index="<%= index %>">
+
+    <p class="title potta-one-regular">
+        <%= c.title %>
+    </p>
+
+    <p class="comment-text">
+        <%= c.comment %>
+    </p>
+
+    <p class="author potta-one-regular">
+        <%= c.author %>
+    </p>
+
+    <%- include("iconButtons", { index }) %>
+
+</div>
