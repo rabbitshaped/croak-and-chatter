@@ -99,8 +99,21 @@
 }
 
 .croak-form textarea {
-	min-height: 116px;
-	resize: vertical;
+	height: 116px;
+	resize: none;
+}
+
+.comment-field {
+	position: relative;
+}
+
+.character-counter {
+	display: block;
+	margin: 4px 7px -5px 0;
+	color: var(--leaf-muted);
+	font-size: 0.72rem;
+	line-height: 1;
+	text-align: right;
 }
 
 .croak-form input:focus,

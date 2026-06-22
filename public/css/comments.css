@@ -29,6 +29,26 @@
 	background-size: contain;
 	text-align: center;
 	filter: drop-shadow(0 16px 20px rgba(42, 83, 62, 0.14));
+	transition:
+		transform 220ms ease,
+		filter 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.comment-card:not(.edit-card):hover {
+		transform: translateY(-6px) rotate(0.35deg);
+		filter: drop-shadow(0 21px 24px rgba(42, 83, 62, 0.19));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.comment-card {
+		transition: none;
+	}
+
+	.comment-card:not(.edit-card):hover {
+		transform: none;
+	}
 }
 
 .comment-card h2,

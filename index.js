@@ -4,6 +4,7 @@ import comments from "./comments.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
+const COMMENT_MAX_LENGTH = 220;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -12,10 +13,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // NEW COMMENT
 app.post("/submit", (req, res) => {
 	const { author, title, comment } = req.body;
-	if (!comment) return res.redirect("/");
+	if (!comment?.trim()) return res.redirect("/");
 
 	// create new comment object using already destructured variables above
-	const newComment = { author, title, comment };
+	const newComment = {
+		author,
+		title,
+		comment: comment.slice(0, COMMENT_MAX_LENGTH),
+	};
 
 	console.log("Before adding:", comments);
 	// newest item goes first. same as push but reverse
@@ -37,7 +42,7 @@ app.post("/save", (req, res) => {
 	comments[index] = {
 		author: req.body.author,
 		title: req.body.title,
-		comment: req.body.comment,
+		comment: String(req.body.comment || "").slice(0, COMMENT_MAX_LENGTH),
 	};
 	console.log("After saving:", comments);
 	res.redirect("/");

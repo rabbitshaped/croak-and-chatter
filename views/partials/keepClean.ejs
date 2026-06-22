@@ -15,7 +15,9 @@
 				<label><span>Title</span><input type="text" id="titleInput" name="title" placeholder="Title" /></label>
 			</div>
 			<label class="comment-field"><span>Your croak</span><textarea name="comment" id="commentInput" rows="4"
-					placeholder="Write your croak here..." required></textarea></label>
+					placeholder="Write your croak here..." maxlength="220" aria-label="Your croak" required></textarea>
+				<small class="character-counter"><output id="commentCount">0</output> / 220</small>
+			</label>
 			<button class="croak-button" type="submit" id="croakButton">CROAK!</button>
 		</form>
 

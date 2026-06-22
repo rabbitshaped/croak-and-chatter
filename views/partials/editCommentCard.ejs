@@ -2,7 +2,7 @@
 	<form action="/save#comment-<%= index %>" method="POST">
 		<input type="hidden" name="editIndex" value="<%= index %>" />
 		<label>Title <input type="text" name="title" value="<%= comment.title %>" required /></label>
-		<label>Comment <textarea name="comment" rows="3" required><%= comment.comment %></textarea></label>
+		<label>Comment <textarea name="comment" rows="3" maxlength="220" required><%= comment.comment %></textarea></label>
 		<label>Name <input type="text" name="author" value="<%= comment.author %>" /></label>
 		<div class="edit-actions">
 			<button class="text-button" type="submit">Save</button>
