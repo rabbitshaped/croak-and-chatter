@@ -3,7 +3,7 @@
 	--page-bg: #344a26;
 	--header-green: #eef4d9;
 	--sky-blue: #b6e6ed;
-	--pond-blue: #6dbed0;
+	--pond-blue: #9bb894;
 	--clean-green: #eef4d9;
 	--footer-green: #7faa68;
 	--cream: #f8f6e9;
@@ -318,6 +318,7 @@ a {
 	bottom: 0;
 	width: clamp(92px, 14vw, 105px);
 	pointer-events: none;
+	user-select: none;
 }
 
 .footer-grass--left {
@@ -401,8 +402,8 @@ a {
 	.footer-grass {
 		width: 150px;
 	}
+}
 
-	.site-footer {
-		z-index: 1;
-	}
+.love {
+	color: #f1b2b1;
 }

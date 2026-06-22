@@ -16,6 +16,18 @@
 					<% } %>
 				<% }) %>
 			</div>
+
+			<div class="comment-carousel-controls" hidden>
+				<button class="carousel-button carousel-button--previous" type="button" aria-label="Previous comment">
+					<span aria-hidden="true">←</span>
+				</button>
+				<output class="carousel-status" aria-live="polite" aria-atomic="true">
+					<span class="carousel-current">1</span> / <span class="carousel-total"><%= Math.min(comments.length, 6) %></span>
+				</output>
+				<button class="carousel-button carousel-button--next" type="button" aria-label="Next comment">
+					<span aria-hidden="true">→</span>
+				</button>
+			</div>
 		</section>
 	</div>
 
