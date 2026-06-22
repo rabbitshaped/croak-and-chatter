@@ -3,7 +3,7 @@
 	--page-bg: #344a26;
 	--header-green: #eef4d9;
 	--sky-blue: #b6e6ed;
-	--pond-blue: #63c3d4;
+	--pond-blue: #6dbed0;
 	--clean-green: #eef4d9;
 	--footer-green: #7faa68;
 	--cream: #f8f6e9;
@@ -48,7 +48,7 @@ body {
 	top: 60px;
 	left: 50%;
 	width: min(var(--scene-max), 100%);
-	aspect-ratio: 3000 / 3300;
+	aspect-ratio: 3000 / 3487;
 	background: url("../images/bigpond.png") center top / 100% auto no-repeat;
 	pointer-events: none;
 	transform: translateX(-50%);
