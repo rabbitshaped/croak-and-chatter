@@ -1,10 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
+	const deleteScrollKey = "croak-and-chatter:delete-scroll";
 	const croakButton = document.getElementById("croakButton");
 	const commentInput = document.getElementById("commentInput");
 	const commentCount = document.getElementById("commentCount");
 	const musicToggle = document.getElementById("musicToggle");
 	const backgroundMusic = document.getElementById("backgroundMusic");
 	const commentsSection = document.querySelector(".comments-section");
+
+	try {
+		const savedDeleteScroll = sessionStorage.getItem(deleteScrollKey);
+		if (savedDeleteScroll !== null) {
+			sessionStorage.removeItem(deleteScrollKey);
+			const scrollPosition = Number(savedDeleteScroll);
+			const restoreScroll = () => {
+				window.scrollTo({ top: scrollPosition, behavior: "instant" });
+			};
+
+			restoreScroll();
+			requestAnimationFrame(restoreScroll);
+			window.addEventListener("load", restoreScroll, { once: true });
+		}
+	} catch {
+		// Storage can be unavailable in strict privacy modes; deletion still works.
+	}
+
+	document.querySelectorAll(".delete-comment-form").forEach((form) => {
+		form.addEventListener("submit", () => {
+			try {
+				sessionStorage.setItem(deleteScrollKey, String(window.scrollY));
+			} catch {
+				// Keep the normal form submission if storage is unavailable.
+			}
+		});
+	});
 
 	if (commentInput && commentCount) {
 		const updateCommentCount = () => {

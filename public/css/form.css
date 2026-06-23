@@ -24,7 +24,7 @@
 	position: relative;
 	z-index: 2;
 	display: grid;
-	grid-template-columns: 330px minmax(420px, 570px) 150px;
+	grid-template-columns: 240px minmax(420px, 570px) 150px;
 	align-items: center;
 	justify-content: center;
 	gap: clamp(24px, 4vw, 54px);
@@ -42,8 +42,7 @@
 }
 
 .clean-note img {
-	width: 80px;
-	flex: 0 0 auto;
+	display: none;
 }
 
 .clean-note h2 {
@@ -224,6 +223,12 @@
 		border-bottom: 1px dashed rgba(117, 169, 87, 0.65);
 	}
 
+	.clean-note img {
+		display: block;
+		width: 80px;
+		flex: 0 0 auto;
+	}
+
 	.cleaning-frog {
 		display: block;
 		right: 0;
@@ -242,6 +247,17 @@
 		padding-inline: 18px;
 	}
 
+	.cleaning-frog {
+		display: none;
+	}
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+	.keep-clean {
+		padding-top: 108px;
+	}
+
+	.clean-note img,
 	.cleaning-frog {
 		display: none;
 	}

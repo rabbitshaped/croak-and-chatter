@@ -95,7 +95,154 @@ a {
 	width: 100%;
 	max-width: var(--scene-max);
 	margin-inline: auto;
+	overflow: hidden;
 	background: var(--pond-blue);
+}
+
+/* Quiet pond details sit below every interactive layer. */
+.pond-life {
+	position: absolute;
+	z-index: 1;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.pond-bubble,
+.pond-ripple {
+	position: absolute;
+	display: block;
+	border: 1px solid rgba(238, 244, 217, 0.58);
+	border-radius: 50%;
+	opacity: 0;
+}
+
+.pond-bubble {
+	width: var(--bubble-size, 7px);
+	height: var(--bubble-size, 7px);
+	left: var(--bubble-x);
+	top: var(--bubble-y);
+	background: rgba(238, 244, 217, 0.08);
+	box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.35);
+	animation: pond-bubble-rise var(--bubble-duration, 17s) ease-in-out infinite;
+	animation-delay: var(--bubble-delay, 0s);
+}
+
+.pond-bubble--1 {
+	--bubble-x: 8%;
+	--bubble-y: 48%;
+	--bubble-size: 6px;
+	--bubble-duration: 17s;
+	--bubble-delay: -4s;
+}
+
+.pond-bubble--2 {
+	--bubble-x: 23%;
+	--bubble-y: 72%;
+	--bubble-size: 9px;
+	--bubble-duration: 21s;
+	--bubble-delay: -14s;
+}
+
+.pond-bubble--3 {
+	--bubble-x: 43%;
+	--bubble-y: 55%;
+	--bubble-size: 5px;
+	--bubble-duration: 19s;
+	--bubble-delay: -9s;
+}
+
+.pond-bubble--4 {
+	--bubble-x: 61%;
+	--bubble-y: 78%;
+	--bubble-size: 8px;
+	--bubble-duration: 23s;
+	--bubble-delay: -2s;
+}
+
+.pond-bubble--5 {
+	--bubble-x: 78%;
+	--bubble-y: 51%;
+	--bubble-size: 6px;
+	--bubble-duration: 18s;
+	--bubble-delay: -12s;
+}
+
+.pond-bubble--6 {
+	--bubble-x: 91%;
+	--bubble-y: 68%;
+	--bubble-size: 10px;
+	--bubble-duration: 24s;
+	--bubble-delay: -17s;
+}
+
+.pond-ripple {
+	width: 24px;
+	height: 10px;
+	left: var(--ripple-x);
+	top: var(--ripple-y);
+	border-color: rgba(238, 244, 217, 0.38);
+	animation: pond-ripple-spread var(--ripple-duration, 18s) ease-out infinite;
+	animation-delay: var(--ripple-delay, 0s);
+}
+
+.pond-ripple--1 {
+	--ripple-x: 15%;
+	--ripple-y: 63%;
+	--ripple-duration: 19s;
+	--ripple-delay: -6s;
+}
+
+.pond-ripple--2 {
+	--ripple-x: 52%;
+	--ripple-y: 46%;
+	--ripple-duration: 23s;
+	--ripple-delay: -16s;
+}
+
+.pond-ripple--3 {
+	--ripple-x: 84%;
+	--ripple-y: 74%;
+	--ripple-duration: 21s;
+	--ripple-delay: -11s;
+}
+
+@keyframes pond-bubble-rise {
+	0%,
+	58% {
+		opacity: 0;
+		transform: translate3d(0, 6px, 0) scale(0.8);
+	}
+	64% {
+		opacity: 0.42;
+	}
+	76% {
+		opacity: 0;
+		transform: translate3d(4px, -30px, 0) scale(1.05);
+	}
+	100% {
+		opacity: 0;
+		transform: translate3d(4px, -30px, 0) scale(1.05);
+	}
+}
+
+@keyframes pond-ripple-spread {
+	0%,
+	65% {
+		opacity: 0;
+		transform: scale(0.45);
+	}
+	69% {
+		opacity: 0.32;
+	}
+	82% {
+		opacity: 0;
+		transform: scale(2.1);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(2.1);
+	}
 }
 
 .hero-band {
@@ -323,11 +470,39 @@ a {
 
 .footer-grass--left {
 	left: 0;
+	transform-origin: left bottom;
+	animation: grass-sway-left 12s ease-in-out -3s infinite alternate;
 }
 
 .footer-grass--right {
 	right: 0;
 	bottom: 20px;
+	transform-origin: right bottom;
+	animation: grass-sway-right 14s ease-in-out -8s infinite alternate;
+}
+
+@keyframes grass-sway-left {
+	from {
+		transform: rotate(-0.35deg);
+	}
+	to {
+		transform: rotate(0.55deg);
+	}
+}
+
+@keyframes grass-sway-right {
+	from {
+		transform: rotate(0.4deg);
+	}
+	to {
+		transform: rotate(-0.5deg);
+	}
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+	.home-page::before {
+		top: 330px;
+	}
 }
 
 @media (max-width: 700px) {
@@ -406,4 +581,16 @@ a {
 
 .love {
 	color: #f1b2b1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.pond-bubble,
+	.pond-ripple,
+	.footer-grass {
+		animation: none;
+	}
 }
