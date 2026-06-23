@@ -62,8 +62,12 @@ app.get("/", (req, res) => {
 	res.render("index", { comments, commentToEdit, index, page: "home" });
 });
 
-app.get("/about", (req, res) => {
-	res.render("about", { page: "about" });
+app.get("/lost-and-found", (req, res) => {
+	res.render("lost-and-found", { page: "lost-and-found" });
+});
+
+app.get("/pond-etiquette", (req, res) => {
+	res.render("pond-etiquette", { page: "pond-etiquette" });
 });
 
 app.listen(port, () => {

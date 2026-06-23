@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Potta+One&family=Klee+One:wght@400;600&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Potta+One&family=Klee+One:wght@400;600&display=swap"
+		rel="stylesheet" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/comments.css" />
 	<link rel="stylesheet" href="/css/form.css" />
 	<link rel="icon" type="image/png" href="/favicon.png" />
 	<title>Croak &amp; Chatter</title>
 </head>
+
 <body class="<%= page === 'home' ? 'home-page' : 'about-page' %>">
 	<div class="header-layer">
 		<header class="site-header">
@@ -22,15 +25,14 @@
 
 			<nav class="site-nav" aria-label="Main navigation">
 				<a class="nav-tab <%= page === 'home' ? 'active' : '' %>" href="/">Hot in the Pond</a>
-				<a class="nav-tab" href="/#comments">Confessions from the Reeds</a>
-				<a class="nav-tab <%= page === 'about' ? 'active' : '' %>" href="/about">About this Pond</a>
+				<a class="nav-tab <%= page === 'pond-etiquette' ? 'active' : '' %>" href="/pond-etiquette">Pond Etiquette</a>
+				<a class="nav-tab <%= page === 'lost-and-found' ? 'active' : '' %>" href="/lost-and-found">Lost & Found</a>
 			</nav>
 
 			<button class="music-toggle" id="musicToggle" type="button" aria-pressed="false"
 				aria-label="Play pond ambience" title="Play pond ambience">
 				<span class="music-toggle__icon" aria-hidden="true">♪</span>
 			</button>
-			<audio id="backgroundMusic" src="/sounds/573584__breviceps__croaking-frogs.wav"
-				loop preload="auto"></audio>
+			<audio id="backgroundMusic" src="/sounds/573584__breviceps__croaking-frogs.wav" loop preload="auto"></audio>
 		</header>
 	</div>
