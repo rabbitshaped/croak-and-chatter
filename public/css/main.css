@@ -1,6 +1,6 @@
 :root {
 	--scene-max: 1200px;
-	--page-bg: #344a26;
+	--page-bg: #33462d;
 	--header-green: #eef4d9;
 	--sky-blue: #b6e6ed;
 	--pond-blue: #9bb894;
@@ -139,7 +139,7 @@ a {
 }
 
 .pond-bubble--2 {
-	--bubble-x: 18%;
+	--bubble-x: 9%;
 	--bubble-y: 66%;
 	--bubble-size: 17px;
 	--bubble-duration: 17s;
@@ -155,7 +155,7 @@ a {
 }
 
 .pond-bubble--4 {
-	--bubble-x: 50%;
+	--bubble-x: 34%;
 	--bubble-y: 62%;
 	--bubble-size: 14px;
 	--bubble-duration: 18s;
@@ -171,7 +171,7 @@ a {
 }
 
 .pond-bubble--6 {
-	--bubble-x: 82%;
+	--bubble-x: 92%;
 	--bubble-y: 46%;
 	--bubble-size: 18px;
 	--bubble-duration: 19s;
@@ -187,11 +187,59 @@ a {
 }
 
 .pond-bubble--8 {
-	--bubble-x: 44%;
+	--bubble-x: 64%;
 	--bubble-y: 84%;
 	--bubble-size: 20px;
 	--bubble-duration: 20s;
 	--bubble-delay: -13s;
+}
+
+.pond-bubble--9 {
+	--bubble-x: 3%;
+	--bubble-y: 78%;
+	--bubble-size: 8px;
+	--bubble-duration: 11s;
+	--bubble-delay: -5s;
+}
+
+.pond-bubble--10 {
+	--bubble-x: 31%;
+	--bubble-y: 35%;
+	--bubble-size: 15px;
+	--bubble-duration: 16s;
+	--bubble-delay: -10s;
+}
+
+.pond-bubble--11 {
+	--bubble-x: 69%;
+	--bubble-y: 38%;
+	--bubble-size: 9px;
+	--bubble-duration: 13s;
+	--bubble-delay: -8s;
+}
+
+.pond-bubble--12 {
+	--bubble-x: 97%;
+	--bubble-y: 84%;
+	--bubble-size: 16px;
+	--bubble-duration: 18s;
+	--bubble-delay: -15s;
+}
+
+.pond-bubble--13 {
+	--bubble-x: 39%;
+	--bubble-y: 59%;
+	--bubble-size: 12px;
+	--bubble-duration: 14s;
+	--bubble-delay: -3s;
+}
+
+.pond-bubble--14 {
+	--bubble-x: 61%;
+	--bubble-y: 55%;
+	--bubble-size: 19px;
+	--bubble-duration: 17s;
+	--bubble-delay: -12s;
 }
 
 .pond-ripple {
@@ -227,14 +275,14 @@ a {
 
 @keyframes pond-bubble-rise {
 	0%,
-	38% {
+	18% {
 		opacity: 0;
 		transform: translate3d(0, 10px, 0) scale(0.75);
 	}
-	48% {
-		opacity: 0.56;
+	28% {
+		opacity: 0.5;
 	}
-	76% {
+	86% {
 		opacity: 0;
 		transform: translate3d(6px, -48px, 0) scale(1.08);
 	}
@@ -246,14 +294,14 @@ a {
 
 @keyframes pond-ripple-spread {
 	0%,
-	65% {
+	42% {
 		opacity: 0;
 		transform: scale(0.45);
 	}
-	69% {
+	49% {
 		opacity: 0.32;
 	}
-	82% {
+	80% {
 		opacity: 0;
 		transform: scale(2.1);
 	}
@@ -426,7 +474,10 @@ a {
 
 /* About page */
 .about-page {
-	background: var(--cream-soft);
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background: var(--ink);
 }
 
 .aboutCroak {
@@ -451,15 +502,28 @@ a {
 
 /* Pond notice-board pages */
 .info-page-main {
+	flex: 1;
+	width: 100%;
 	max-width: var(--scene-max);
 	min-height: 670px;
 	margin: 0 auto;
 	padding: clamp(48px, 7vw, 86px) clamp(18px, 5vw, 56px) 100px;
 	background:
-		radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.28) 0 3px, transparent 4px),
-		radial-gradient(circle at 83% 72%, rgba(255, 255, 255, 0.2) 0 4px, transparent 5px),
+		radial-gradient(
+			circle at 12% 18%,
+			rgba(255, 255, 255, 0.28) 0 3px,
+			transparent 4px
+		),
+		radial-gradient(
+			circle at 83% 72%,
+			rgba(255, 255, 255, 0.2) 0 4px,
+			transparent 5px
+		),
 		var(--pond-blue);
-	background-size: 90px 90px, 130px 130px, auto;
+	background-size:
+		90px 90px,
+		130px 130px,
+		auto;
 }
 
 .pond-notice,
@@ -588,27 +652,23 @@ a {
 
 .found-item {
 	position: relative;
+	display: grid;
+	grid-template-columns: 112px minmax(0, 1fr);
+	gap: 18px;
+	align-items: center;
 	min-height: 138px;
-	padding: 22px 22px 20px 72px;
+	padding: 16px 22px 16px 14px;
 	border: 1px solid rgba(96, 125, 73, 0.28);
 	border-radius: 18px 24px 20px 16px;
 	background: rgba(255, 253, 242, 0.78);
 	box-shadow: 0 8px 16px rgba(55, 82, 47, 0.07);
 }
 
-.found-number {
-	position: absolute;
-	top: 20px;
-	left: 18px;
-	display: grid;
-	width: 38px;
-	height: 38px;
-	place-items: center;
-	border-radius: 50%;
-	background: var(--leaf);
-	color: #fff;
-	font-family: var(--display-font);
-	font-size: 0.78rem;
+.found-item-image {
+	width: 112px;
+	height: 108px;
+	object-fit: contain;
+	filter: drop-shadow(0 7px 7px rgba(55, 82, 47, 0.1));
 }
 
 .found-item h2 {
@@ -704,7 +764,7 @@ a {
 
 @media (max-width: 700px) {
 	.home-page::before {
-		top: 410px;
+		top: 465px;
 	}
 
 	.site-header {
@@ -733,7 +793,11 @@ a {
 	}
 
 	.site-nav {
-		display: none;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 6px;
+		width: min(360px, 100%);
+		margin: 18px auto 0;
 	}
 
 	.music-toggle {
@@ -744,9 +808,13 @@ a {
 	}
 
 	.nav-tab {
-		min-width: 132px;
-		padding: 8px 12px;
-		font-size: 0.8rem;
+		display: flex;
+		min-width: 0;
+		min-height: 42px;
+		padding: 7px 5px;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.7rem;
 	}
 
 	.hero {
@@ -788,6 +856,14 @@ a {
 
 	.found-item {
 		min-height: 0;
+		grid-template-columns: 82px minmax(0, 1fr);
+		gap: 13px;
+		padding: 13px 15px 13px 10px;
+	}
+
+	.found-item-image {
+		width: 82px;
+		height: 82px;
 	}
 
 	.footer-content {
