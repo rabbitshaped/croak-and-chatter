@@ -5,7 +5,8 @@
 	--sky-blue: #b6e6ed;
 	--pond-blue: #9bb894;
 	--clean-green: #eef4d9;
-	--footer-green: #7faa68;
+	--footer-green: #c6d6a7;
+	--footer-font: #6b7c54;
 	--cream: #f8f6e9;
 	--cream-soft: var(--clean-green);
 	--leaf: #75a957;
@@ -29,7 +30,7 @@ html {
 body {
 	min-width: 320px;
 	margin: 0;
-	background: var(--page-bg);
+	background: #c1d2a5;
 	color: var(--ink);
 	font-family: var(--body-font);
 	font-size: 16px;
@@ -48,7 +49,7 @@ body {
 	top: 60px;
 	left: 50%;
 	width: min(var(--scene-max), 100%);
-	aspect-ratio: 3000 / 3487;
+	aspect-ratio: 3000 / 3672;
 	background: url("../images/bigpond.png") center top / 100% auto no-repeat;
 	pointer-events: none;
 	transform: translateX(-50%);
@@ -694,7 +695,7 @@ a {
 	min-height: 100px;
 	overflow: visible;
 	background: var(--footer-green);
-	color: #f7faee;
+	color: var(--footer-font);
 }
 
 .footer-content {
@@ -706,10 +707,6 @@ a {
 
 .footer-content p {
 	margin: 0 0 7px;
-}
-
-.footer-content span {
-	color: #ee5e65;
 }
 
 .footer-grass {
@@ -877,7 +874,7 @@ a {
 }
 
 .love {
-	color: #f1b2b1;
+	color: var(--leaf);
 }
 
 @media (prefers-reduced-motion: reduce) {
