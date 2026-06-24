@@ -20,6 +20,14 @@
 	background: var(--clean-green);
 }
 
+@media (min-width: 1101px) {
+	.keep-clean::before {
+		top: -118px;
+		height: 228px;
+		border-radius: 50% 50% 0 0 / 24% 24% 0 0;
+	}
+}
+
 .keep-clean__inner {
 	position: relative;
 	z-index: 2;
@@ -247,9 +255,9 @@
 		padding-inline: 18px;
 	}
 
-	.cleaning-frog {
+	/* .cleaning-frog {
 		display: none;
-	}
+	} */
 }
 
 @media (min-width: 701px) and (max-width: 1100px) {
@@ -257,8 +265,8 @@
 		padding-top: 108px;
 	}
 
-	.clean-note img,
+	/* .clean-note img,
 	.cleaning-frog {
 		display: none;
-	}
+	} */
 }

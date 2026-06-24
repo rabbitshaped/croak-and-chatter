@@ -61,20 +61,46 @@ document.addEventListener("DOMContentLoaded", () => {
 		const currentOutput = commentsSection.querySelector(".carousel-current");
 		const totalOutput = commentsSection.querySelector(".carousel-total");
 		const mobileQuery = window.matchMedia("(max-width: 700px)");
+		const tabletQuery = window.matchMedia("(max-width: 1100px)");
 		const editIndex = commentCards.findIndex((card) =>
 			card.classList.contains("edit-card"),
 		);
-		let currentIndex = editIndex >= 0 ? editIndex : 0;
+		let carouselStart = editIndex >= 0 ? editIndex : 0;
+		let previousMode = "";
+
+		const getCarouselMode = () => {
+			if (mobileQuery.matches) return "mobile";
+			if (tabletQuery.matches) return "tablet";
+			return "desktop";
+		};
 
 		const updateCarousel = () => {
-			const isMobile = mobileQuery.matches;
-			commentsSection.classList.toggle("is-carousel-ready", isMobile);
+			const mode = getCarouselMode();
+			const isMobile = mode === "mobile";
+			const isTablet = mode === "tablet";
+			const isCarousel = isMobile || isTablet;
+			const pageSize = isMobile ? 1 : isTablet ? 4 : commentCards.length;
+			const maximumStart = Math.max(0, commentCards.length - pageSize);
+
+			if (mode !== previousMode) {
+				if (isTablet) carouselStart = carouselStart >= 4 ? maximumStart : 0;
+				if (mode === "desktop") carouselStart = 0;
+				previousMode = mode;
+			}
+
+			carouselStart = Math.max(0, Math.min(carouselStart, maximumStart));
+			commentsSection.classList.toggle("is-carousel-ready", isCarousel);
+			commentsSection.classList.toggle("is-mobile-carousel", isMobile);
+			commentsSection.classList.toggle("is-tablet-carousel", isTablet);
 
 			commentCards.forEach((card, index) => {
-				const isActive = isMobile && index === currentIndex;
+				const isActive =
+					isCarousel &&
+					index >= carouselStart &&
+					index < carouselStart + pageSize;
 				card.classList.toggle("is-active", isActive);
 
-				if (isMobile) {
+				if (isCarousel) {
 					card.hidden = !isActive;
 					card.setAttribute("aria-hidden", String(!isActive));
 				} else {
@@ -85,29 +111,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			if (!carouselControls || !commentCards.length) return;
 
-			carouselControls.hidden = !isMobile;
-			if (currentOutput) currentOutput.textContent = String(currentIndex + 1);
+			carouselControls.hidden = !isCarousel;
+			if (currentOutput) {
+				const firstVisible = carouselStart + 1;
+				const lastVisible = Math.min(carouselStart + pageSize, commentCards.length);
+				currentOutput.textContent = isTablet
+					? `${firstVisible}–${lastVisible}`
+					: String(firstVisible);
+			}
 			if (totalOutput) totalOutput.textContent = String(commentCards.length);
-			if (previousButton) previousButton.disabled = currentIndex === 0;
-			if (nextButton) nextButton.disabled = currentIndex === commentCards.length - 1;
+			if (previousButton) previousButton.disabled = carouselStart === 0;
+			if (nextButton) nextButton.disabled = carouselStart >= maximumStart;
 		};
 
 		previousButton?.addEventListener("click", () => {
-			if (currentIndex === 0) return;
-			currentIndex -= 1;
+			if (carouselStart === 0) return;
+			carouselStart = getCarouselMode() === "tablet" ? 0 : carouselStart - 1;
 			updateCarousel();
 		});
 
 		nextButton?.addEventListener("click", () => {
-			if (currentIndex >= commentCards.length - 1) return;
-			currentIndex += 1;
+			const pageSize = getCarouselMode() === "tablet" ? 4 : 1;
+			const maximumStart = Math.max(0, commentCards.length - pageSize);
+			if (carouselStart >= maximumStart) return;
+			carouselStart =
+				getCarouselMode() === "tablet" ? maximumStart : carouselStart + 1;
 			updateCarousel();
 		});
 
 		if (typeof mobileQuery.addEventListener === "function") {
 			mobileQuery.addEventListener("change", updateCarousel);
+			tabletQuery.addEventListener("change", updateCarousel);
 		} else {
 			mobileQuery.addListener(updateCarousel);
+			tabletQuery.addListener(updateCarousel);
 		}
 
 		updateCarousel();
@@ -129,7 +166,38 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	if (musicToggle && backgroundMusic) {
+		const musicStorageKey = "croak-and-chatter:pond-music";
 		backgroundMusic.volume = 0.22;
+		let wantsMusic = false;
+		let lastSavedSecond = -1;
+
+		const readMusicState = () => {
+			try {
+				const savedState = JSON.parse(sessionStorage.getItem(musicStorageKey));
+				return {
+					enabled: savedState?.enabled === true,
+					currentTime: Number.isFinite(savedState?.currentTime)
+						? Math.max(0, savedState.currentTime)
+						: 0,
+				};
+			} catch {
+				return { enabled: false, currentTime: 0 };
+			}
+		};
+
+		const saveMusicState = () => {
+			try {
+				sessionStorage.setItem(
+					musicStorageKey,
+					JSON.stringify({
+						enabled: wantsMusic,
+						currentTime: backgroundMusic.currentTime || 0,
+					}),
+				);
+			} catch {
+				// Audio controls still work when storage is unavailable.
+			}
+		};
 
 		const setMusicState = (isPlaying) => {
 			musicToggle.classList.toggle("is-playing", isPlaying);
@@ -141,19 +209,76 @@ document.addEventListener("DOMContentLoaded", () => {
 			musicToggle.title = isPlaying ? "Pause pond ambience" : "Play pond ambience";
 		};
 
-		musicToggle.addEventListener("click", async () => {
-			if (!backgroundMusic.paused) {
-				backgroundMusic.pause();
-				setMusicState(false);
-				return;
-			}
+		const resumeAfterInteraction = async (event) => {
+			if (!wantsMusic || !backgroundMusic.paused) return;
+			if (event.target instanceof Element && event.target.closest("#musicToggle")) return;
 
 			try {
 				await backgroundMusic.play();
-				setMusicState(true);
+				document.removeEventListener("pointerdown", resumeAfterInteraction);
+				document.removeEventListener("keydown", resumeAfterInteraction);
 			} catch {
+				// The next user gesture can try again if autoplay remains blocked.
+			}
+		};
+
+		const tryResumeMusic = async () => {
+			if (!wantsMusic) return;
+
+			try {
+				await backgroundMusic.play();
+			} catch {
+				document.addEventListener("pointerdown", resumeAfterInteraction);
+				document.addEventListener("keydown", resumeAfterInteraction);
+			}
+		};
+
+		const savedMusicState = readMusicState();
+		wantsMusic = savedMusicState.enabled;
+		const restorePlayhead = () => {
+			if (savedMusicState.currentTime > 0) {
+				backgroundMusic.currentTime = savedMusicState.currentTime;
+			}
+			tryResumeMusic();
+		};
+
+		if (backgroundMusic.readyState >= 1) {
+			restorePlayhead();
+		} else {
+			backgroundMusic.addEventListener("loadedmetadata", restorePlayhead, {
+				once: true,
+			});
+		}
+
+		backgroundMusic.addEventListener("play", () => setMusicState(true));
+		backgroundMusic.addEventListener("pause", () => setMusicState(false));
+		backgroundMusic.addEventListener("timeupdate", () => {
+			const currentSecond = Math.floor(backgroundMusic.currentTime);
+			if (currentSecond - lastSavedSecond < 2) return;
+			lastSavedSecond = currentSecond;
+			saveMusicState();
+		});
+		window.addEventListener("pagehide", saveMusicState);
+
+		musicToggle.addEventListener("click", async () => {
+			if (!backgroundMusic.paused) {
+				wantsMusic = false;
+				backgroundMusic.pause();
+				saveMusicState();
+				return;
+			}
+
+			wantsMusic = true;
+			try {
+				await backgroundMusic.play();
+				saveMusicState();
+			} catch {
+				wantsMusic = false;
 				setMusicState(false);
+				saveMusicState();
 			}
 		});
+
+		setMusicState(false);
 	}
 });
