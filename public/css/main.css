@@ -2,8 +2,8 @@
 	--scene-max: 1200px;
 	--page-bg: #344a26;
 	--header-green: #edf3dc;
-	--sky-blue: #bedbd2;
-	--pond-blue: #bedbd2;
+	--sky-blue: #b9e2e6;
+	--pond-blue: #b9e2e6;
 	--info-bg: #bedbd2;
 	--clean-green: #eef4d9;
 	--footer-green: #789f62;
@@ -17,6 +17,19 @@
 	--content-width: 980px;
 	--display-font: "Potta One", system-ui, sans-serif;
 	--body-font: "Klee One", sans-serif;
+
+	/* Desktop layout tuning */
+	--pond-image-offset: 60px;
+	--hero-panel-min-height: 272px;
+	--hero-blue-tail: 0px;
+	--comments-top-space: 100px;
+	--comments-bottom-space: 92px;
+	--carousel-control-gap: 18px;
+	--clean-section-gap: 40px;
+	--clean-content-top: 180px;
+	--clean-curve-top: -118px;
+	--clean-curve-height: 228px;
+	--clean-curve-radius: 50% 50% 0 0 / 24% 24% 0 0;
 }
 
 /* Base */
@@ -47,7 +60,7 @@ body {
 	content: "";
 	position: absolute;
 	z-index: 1;
-	top: 60px;
+	top: var(--pond-image-offset);
 	left: 50%;
 	width: min(var(--scene-max), 100%);
 	aspect-ratio: 3000 / 3672;
@@ -284,6 +297,41 @@ a {
 	--ripple-delay: -11s;
 }
 
+/* Flies share the pond-life layer: above the art, below all content. */
+.pond-fly {
+	position: absolute;
+	display: block;
+	width: 18px;
+	aspect-ratio: 52 / 50;
+	background: url("../images/fly.png") center / contain no-repeat;
+	filter: drop-shadow(0 2px 2px rgba(42, 83, 62, 0.16));
+	opacity: 0.62;
+	pointer-events: none;
+	will-change: transform;
+}
+
+.pond-fly--1 {
+	left: 19%;
+	top: 24%;
+	animation: fly-drift-one 19s cubic-bezier(0.45, 0.05, 0.55, 0.95) -7s infinite;
+}
+
+.pond-fly--2 {
+	left: 73%;
+	top: 39%;
+	width: 15px;
+	animation: fly-drift-two 23s cubic-bezier(0.45, 0.05, 0.55, 0.95) -15s
+		infinite;
+}
+
+.pond-fly--3 {
+	left: 87%;
+	top: 66%;
+	width: 13px;
+	animation: fly-drift-one 27s cubic-bezier(0.45, 0.05, 0.55, 0.95) -21s
+		infinite reverse;
+}
+
 @keyframes pond-bubble-rise {
 	0%,
 	18% {
@@ -322,7 +370,46 @@ a {
 	}
 }
 
+@keyframes fly-drift-one {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0) rotate(-5deg);
+	}
+	17% {
+		transform: translate3d(24px, -16px, 0) rotate(18deg);
+	}
+	38% {
+		transform: translate3d(42px, 8px, 0) rotate(-12deg);
+	}
+	61% {
+		transform: translate3d(13px, 28px, 0) rotate(21deg);
+	}
+	82% {
+		transform: translate3d(-18px, 10px, 0) rotate(-16deg);
+	}
+}
+
+@keyframes fly-drift-two {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0) rotate(8deg);
+	}
+	22% {
+		transform: translate3d(-28px, 18px, 0) rotate(-20deg);
+	}
+	46% {
+		transform: translate3d(-12px, 45px, 0) rotate(14deg);
+	}
+	69% {
+		transform: translate3d(25px, 24px, 0) rotate(-8deg);
+	}
+	86% {
+		transform: translate3d(35px, -9px, 0) rotate(19deg);
+	}
+}
+
 .hero-band {
+	padding-bottom: var(--hero-blue-tail);
 	background: var(--sky-blue);
 }
 
@@ -430,7 +517,7 @@ a {
 	display: grid;
 	place-items: center;
 	max-width: var(--scene-max);
-	min-height: 272px;
+	min-height: var(--hero-panel-min-height);
 	margin: 0 auto;
 	padding: 42px 20px 26px;
 }
@@ -726,19 +813,35 @@ a {
 	}
 }
 
+/* Tablet layout: 701px–1100px */
 @media (min-width: 701px) and (max-width: 1100px) {
-	.home-page::before {
-		top: 130px;
-	}
-
-	.hero-band {
-		padding-bottom: 110px;
+	:root {
+		--pond-image-offset: 160px;
+		--hero-blue-tail: 64px;
+		--comments-top-space: 44px;
+		--comments-bottom-space: 38px;
+		--carousel-control-gap: 14px;
+		--clean-section-gap: -200px;
+		--clean-content-top: 262px;
+		--clean-curve-top: -42px;
+		--clean-curve-height: 52px;
+		--clean-curve-radius: 50% 50% 0 0 / 100% 100% 0 0;
 	}
 }
 
+/* Mobile layout: up to 700px */
 @media (max-width: 700px) {
-	.home-page::before {
-		top: 465px;
+	:root {
+		--pond-image-offset: 425px;
+		--hero-blue-tail: 80px;
+		--comments-top-space: 44px;
+		--comments-bottom-space: 72px;
+		--carousel-control-gap: 22px;
+		--clean-section-gap: -170px;
+		--clean-content-top: 150px;
+		--clean-curve-top: -18px;
+		--clean-curve-height: 28px;
+		--clean-curve-radius: 50% 50% 0 0 / 100% 100% 0 0;
 	}
 
 	.site-header {
@@ -746,7 +849,7 @@ a {
 	}
 
 	.hero-band {
-		padding: 10px 0 80px;
+		padding-top: 10px;
 	}
 
 	.site-title {
@@ -865,6 +968,7 @@ a {
 
 	.pond-bubble,
 	.pond-ripple,
+	.pond-fly,
 	.footer-grass {
 		animation: none;
 	}
