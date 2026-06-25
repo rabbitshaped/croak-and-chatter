@@ -36,6 +36,10 @@ Future improvements could include:
 - CSS
 - JavaScript
 
+## Sound Credits
+- [Breviceps](https://freesound.org/people/Breviceps/) (Frog symphony)
+- [Freesound Community](https://pixabay.com/sound-effects/search/user_id%3a46691455/) (Individual frog croaks)
+
 ## Getting Started
 
 Install dependencies:
